@@ -10,7 +10,7 @@ void BoardEntity::Draw() {
                 if(i == 0 || i == this->_dimensions[0] - 1) this->board[i][j] = '-';
                 else if(j == 0 || j == this->_dimensions[1] - 1) this->board[i][j] = '|';
                 else this->board[i][j] = 0;
-                for(unsigned int k = 0; k < this->_player.BodyPartsPositions().capacity(); k++) {
+                for(unsigned int k = 0; k < this->_player.BodyPartsPositions().size(); k++) {
                     if(i == this->_player.BodyPartsPositions()[k][0] && j == this->_player.BodyPartsPositions()[k][1]) this->board[i][j] = this->_player.Body();
                 }
                 std::cout << this->board[i][j];

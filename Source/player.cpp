@@ -7,7 +7,7 @@ std::array<int, 2> PlayerEntity::Direction() const { return this->_direction; }
 void PlayerEntity::SetDirection(const std::array<int, 2>& newDirection) { this->_direction = newDirection; }
 
 void PlayerEntity::AddBodyPart(const std::array<unsigned int, 2>& dimensions) {
-    std::array<unsigned int, 2> lastBodyPart = this->_bodyPartsPositions[_bodyPartsPositions.capacity() - 1];
+    std::array<unsigned int, 2> lastBodyPart = this->_bodyPartsPositions[_bodyPartsPositions.size() - 1]; 
 
     if(lastBodyPart[0] == 1 && this->_direction[0] == 1) { lastBodyPart[0] = dimensions[0] - 2; }
     else if(lastBodyPart[0] == dimensions[0] - 2 && this->_direction[0] == -1) { lastBodyPart[0] = 1; }
@@ -22,7 +22,7 @@ void PlayerEntity::AddBodyPart(const std::array<unsigned int, 2>& dimensions) {
 }
 
 void PlayerEntity::MovePlayer(const std::array<unsigned int, 2>& dimensions) {
-    for(unsigned int i = this->_bodyPartsPositions.capacity() - 1; i > 0; i--) {
+    for(unsigned int i = this->_bodyPartsPositions.size() - 1; i > 0; i--) {
         this->_bodyPartsPositions[i] = this->_bodyPartsPositions[i - 1];
     }
 
