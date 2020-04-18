@@ -6,6 +6,9 @@ std::vector<std::array<unsigned int, 2>> PlayerEntity::BodyPartsPositions() cons
 std::array<int, 2> PlayerEntity::Direction() const { return this->_direction; }
 void PlayerEntity::SetDirection(const std::array<int, 2>& newDirection) { this->_direction = newDirection; }
 
+bool PlayerEntity::GameState() const { return this->_gameState; }
+void PlayerEntity::SetGameState(bool currentGameState) { this->_gameState = currentGameState; }
+
 void PlayerEntity::AddBodyPart(const std::array<unsigned int, 2>& dimensions) {
     std::array<unsigned int, 2> lastBodyPart = this->_bodyPartsPositions[_bodyPartsPositions.size() - 1]; 
 
@@ -34,16 +37,20 @@ void PlayerEntity::MovePlayer(const std::array<unsigned int, 2>& dimensions) {
         this->_bodyPartsPositions[0][0] += this->_direction[0];
         this->_bodyPartsPositions[0][1] += this->_direction[1];
     }
+
+    for(unsigned int i = this->_bodyPartsPositions.size() - 1; i > 0; i--) {
+        if(_bodyPartsPositions[0] == _bodyPartsPositions[i]) this->SetGameState(true);
+    }
 }
 
 PlayerEntity::PlayerEntity() 
-    : _body('X'), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(1, { 0, 0 })), _direction(std::array<int, 2>({ 0, 0 })) { }
+    : _body('X'), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(1, { 0, 0 })), _direction(std::array<int, 2>({ 0, 0 })), _gameState(false) { }
 
 PlayerEntity::PlayerEntity(const char& body, const std::array<unsigned int, 2>& startingPosition) 
-    : _body(body), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(1, startingPosition)), _direction(std::array<int, 2>({ 0, 0 })) { }
+    : _body(body), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(1, startingPosition)), _direction(std::array<int, 2>({ 0, 0 })), _gameState(false) { }
 
 PlayerEntity::PlayerEntity(const PlayerEntity& player) 
-    : _body(player._body), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(player._bodyPartsPositions)), _direction(std::array<int, 2>(player._direction)) { }
+    : _body(player._body), _bodyPartsPositions(std::vector<std::array<unsigned int, 2>>(player._bodyPartsPositions)), _direction(std::array<int, 2>(player._direction)), _gameState(false) { }
 
 PlayerEntity::~PlayerEntity() {
     std::cout << "Player destroyed" << std::endl;

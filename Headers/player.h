@@ -9,12 +9,15 @@ class PlayerEntity {
         char _body;
         std::vector<std::array<unsigned int, 2>> _bodyPartsPositions;
         std::array<int, 2> _direction;
+        bool _gameState;
 
     public:
         char Body() const;
         std::vector<std::array<unsigned int, 2>> BodyPartsPositions() const;
         std::array<int, 2> Direction() const;
         void SetDirection(const std::array<int, 2>& newDirection);
+        bool GameState() const;
+        void SetGameState(bool currentGameState);
 
         void AddBodyPart(const std::array<unsigned int, 2>& dimensions);
         void MovePlayer(const std::array<unsigned int, 2>& dimensions);
