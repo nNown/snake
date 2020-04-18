@@ -9,12 +9,13 @@ class BoardEntity {
     private:
         std::array<unsigned int, 2> _dimensions;
         std::vector<std::vector<char>> board;
-        PlayerEntity player;
+        PlayerEntity _player;
 
     public:
         std::array<unsigned int, 2> Dimensions() const;
+        PlayerEntity* Player();
 
-        void PrintBoard();
+        void Draw();
 
         BoardEntity(const std::array<unsigned int, 2>& dimensions, const PlayerEntity& player);
         ~BoardEntity();
