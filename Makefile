@@ -6,5 +6,5 @@ OPTIMALIZATION = -g -Og
 
 all: debug
 
-debug: Source/main.cpp Source/board.cpp Source/player.cpp Source/food.cpp
+debug: Source/main.cpp Source/board.cpp Source/player.cpp Source/food.cpp Source/game.cpp
 	$(GXX) $(CPPFLAGS) $(LDFLAGS) $(STDFLAG) -o main $^ $(OPTIMALIZATION)

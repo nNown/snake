@@ -24,6 +24,13 @@ void BoardEntity::Draw() {
     }
 }
 
+void BoardEntity::ManageFood() {
+    if(this->_player.BodyPartsPositions()[0][0] == this->_food.Position()[0] && this->_player.BodyPartsPositions()[0][1] == this->_food.Position()[1]) {
+        this->_player.AddBodyPart(this->_dimensions);
+        this->_food.SetPosition({1 + rand() % (this->_dimensions[0] - 2), 1 + rand() % (this->_dimensions[1] - 2)});
+    }
+}
+
 BoardEntity::BoardEntity(const std::array<unsigned int, 2>& _dimensions, const PlayerEntity& player, const FoodEntity& food) {
     this->_dimensions = std::array<unsigned int, 2>(_dimensions);
     this->_board = std::vector<std::vector<char>>(this->_dimensions[0], std::vector<char>(this->_dimensions[1], 0));

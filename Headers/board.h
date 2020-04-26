@@ -19,6 +19,7 @@ class BoardEntity {
         FoodEntity* Food();
 
         void Draw();
+        void ManageFood();
 
         BoardEntity(const std::array<unsigned int, 2>& dimensions, const PlayerEntity& player, const FoodEntity& food);
         ~BoardEntity();
