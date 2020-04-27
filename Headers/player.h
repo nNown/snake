@@ -17,7 +17,7 @@ class PlayerEntity {
         std::array<int, 2> Direction() const;
         void SetDirection(const std::array<int, 2>& newDirection);
         bool GameState() const;
-        void SetGameState(bool currentGameState);
+        void SetGameState(const bool& currentGameState);
 
         void AddBodyPart(const std::array<unsigned int, 2>& dimensions);
         void MovePlayer(const std::array<unsigned int, 2>& dimensions);

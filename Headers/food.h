@@ -11,7 +11,7 @@ class FoodEntity {
     public:
         char Body() const;
         std::array<unsigned int, 2> Position() const;
-        void SetPosition(std::array<unsigned int, 2> newPosition);
+        void SetPosition(const std::array<unsigned int, 2>& newPosition);
 
         FoodEntity();
         FoodEntity(const std::array<unsigned int, 2>& position);

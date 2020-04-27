@@ -7,7 +7,7 @@ std::array<int, 2> PlayerEntity::Direction() const { return this->_direction; }
 void PlayerEntity::SetDirection(const std::array<int, 2>& newDirection) { this->_direction = newDirection; }
 
 bool PlayerEntity::GameState() const { return this->_gameState; }
-void PlayerEntity::SetGameState(bool currentGameState) { this->_gameState = currentGameState; }
+void PlayerEntity::SetGameState(const bool& currentGameState) { this->_gameState = currentGameState; }
 
 void PlayerEntity::AddBodyPart(const std::array<unsigned int, 2>& dimensions) {
     std::array<unsigned int, 2> lastBodyPart = this->_bodyPartsPositions[_bodyPartsPositions.size() - 1]; 

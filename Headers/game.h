@@ -14,14 +14,14 @@ class GameEntity {
     private: 
         static GameEntity* GameInstance;
         BoardEntity* board;
-        GameEntity(std::array<unsigned int, 2> dimensions);
+        GameEntity(const std::array<unsigned int, 2>& dimensions);
 
     public: 
         void Draw();
         void GetInput();
-        void CursorState(bool state);
-        bool GetGameState();
+        void CursorState(const bool& state);
+        bool GetGameState() const;
 
         static GameEntity* GetGameEntityInstance();
-        static GameEntity* GetGameEntityInstance(std::array<unsigned int, 2> dimensions);
+        static GameEntity* GetGameEntityInstance(const std::array<unsigned int, 2>& dimensions);
 };

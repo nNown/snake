@@ -16,7 +16,7 @@ void GameEntity::GetInput() {
     else if(GetKeyState(VK_ESCAPE) & PressedKeyMask) this->board->Player()->SetGameState(true);
 }
 
-void GameEntity::CursorState(bool state) {
+void GameEntity::CursorState(const bool& state) {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
     CONSOLE_CURSOR_INFO     cursorInfo;
@@ -26,9 +26,9 @@ void GameEntity::CursorState(bool state) {
     SetConsoleCursorInfo(out, &cursorInfo);
 }
 
-bool GameEntity::GetGameState() { return this->board->Player()->GameState(); }
+bool GameEntity::GetGameState() const { return this->board->Player()->GameState(); }
 
-GameEntity::GameEntity(std::array<unsigned int, 2> dimensions) {
+GameEntity::GameEntity(const std::array<unsigned int, 2>& dimensions) {
     std::srand(std::time(nullptr));
     this->board = new BoardEntity(dimensions, PlayerEntity('X', { 6, 15 }), FoodEntity({1 + rand() % (dimensions[0] - 2), 1 + rand() % (dimensions[1] - 2)}));
 }
@@ -41,7 +41,7 @@ GameEntity* GameEntity::GetGameEntityInstance() {
     return GameInstance;
 }
 
-GameEntity* GameEntity::GetGameEntityInstance(std::array<unsigned int, 2> dimensions) {
+GameEntity* GameEntity::GetGameEntityInstance(const std::array<unsigned int, 2>& dimensions) {
     if(GameInstance == NULL) {
         GameInstance = new GameEntity(dimensions);
     }
