@@ -22,6 +22,8 @@ class GameEntity {
         void CursorState(const bool& state);
         bool GetGameState() const;
 
+        BoardEntity* Board();
+
         static GameEntity* GetGameEntityInstance();
         static GameEntity* GetGameEntityInstance(const std::array<unsigned int, 2>& dimensions);
 };

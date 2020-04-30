@@ -9,10 +9,10 @@ void GameEntity::Draw() {
 }
 
 void GameEntity::GetInput() {
-    if(GetKeyState(VK_LEFT) & PressedKeyMask || GetKeyState(0x41) & PressedKeyMask) this->board->Player()->SetDirection({ 0, -1 });
-    else if(GetKeyState(VK_UP) & PressedKeyMask || GetKeyState(0x57) & PressedKeyMask) this->board->Player()->SetDirection({ -1, 0 });
-    else if(GetKeyState(VK_RIGHT) & PressedKeyMask || GetKeyState(0x44) & PressedKeyMask) this->board->Player()->SetDirection({ 0, 1 });
-    else if(GetKeyState(VK_DOWN) & PressedKeyMask || GetKeyState(0x53) & PressedKeyMask) this->board->Player()->SetDirection({ 1, 0 });
+    if((GetKeyState(VK_LEFT) & PressedKeyMask || GetKeyState(0x41) & PressedKeyMask) && this->board->Player()->Direction()[1] != 1) this->board->Player()->SetDirection({ 0, -1 });
+    else if((GetKeyState(VK_UP) & PressedKeyMask || GetKeyState(0x57) & PressedKeyMask) && this->board->Player()->Direction()[0] != 1) this->board->Player()->SetDirection({ -1, 0 });
+    else if((GetKeyState(VK_RIGHT) & PressedKeyMask || GetKeyState(0x44) & PressedKeyMask) && this->board->Player()->Direction()[1] != -1) this->board->Player()->SetDirection({ 0, 1 });
+    else if((GetKeyState(VK_DOWN) & PressedKeyMask || GetKeyState(0x53) & PressedKeyMask) && this->board->Player()->Direction()[0] != -1) this->board->Player()->SetDirection({ 1, 0 });
     else if(GetKeyState(VK_ESCAPE) & PressedKeyMask) this->board->Player()->SetGameState(true);
 }
 
@@ -27,6 +27,8 @@ void GameEntity::CursorState(const bool& state) {
 }
 
 bool GameEntity::GetGameState() const { return this->board->Player()->GameState(); }
+
+BoardEntity* GameEntity::Board() { return this->board; }
 
 GameEntity::GameEntity(const std::array<unsigned int, 2>& dimensions) {
     std::srand(std::time(nullptr));
