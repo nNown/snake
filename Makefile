@@ -2,7 +2,7 @@ GXX = g++
 CPPFLAGS = -Wall -Wextra -Wno-unused-parameter
 LDFLAGS = -I./Headers/
 STDFLAG = -std=c++17
-OPTIMALIZATION = -g -Og
+OPTIMALIZATION = -Ofast
 
 all: debug
 
